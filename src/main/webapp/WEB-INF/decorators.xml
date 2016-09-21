@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<decorators defaultdir="/decorators">
+    <excludes>
+        <pattern>/js/*</pattern>
+        <pattern>/css/*</pattern>
+        <pattern>/gwt/*</pattern>
+        <pattern>/META-INF/*</pattern>
+    </excludes>
+
+    <decorator name="servletOutputDecorator" page="jspDec.jsp">
+        <pattern>/*</pattern>
+        <pattern>/</pattern>
+        <pattern>/prelogin</pattern>
+        <pattern>/simple</pattern>
+        <pattern>/error.jsp</pattern>
+    </decorator>
+
+    <decorator name="jspOutputDecorator" page="jspDec.jsp">
+        <pattern>/*.jsp</pattern>
+      </decorator>
+</decorators>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/studentsApp" useHttpOnly="true">
+    <Resource
+            driverClassName="com.mysql.jdbc.Driver"
+            maxActive="4"
+            maxIdle="2"
+            maxWait="5000"
+            name="jdbc/StudentsDS"
+            username="root"
+            password="tatarstan"
+            type="javax.sql.DataSource"
+            url="jdbc:mysql://localhost/students?characterEncoding=utf8&amp;allowMultiQueries=true"
+            validationQuery="SELECT 1">
+    </Resource>
+    <!--<Realm className="org.apache.catalina.realm.MemoryRealm"
+           pathname="C:/itiswebapp/src/main/webapp/META-INF/tomcat-users.xml"/>-->
+
+    <Realm className="org.apache.catalina.realm.CombinedRealm" >
+        <Realm className="org.apache.catalina.realm.JDBCRealm"
+               driverName="org.gjt.mm.mysql.Driver"
+               digest="MD5"
+               connectionURL="jdbc:mysql://localhost/students?user=root&amp;password=tatarstan"
+               userTable="users" userNameCol="user_name" userCredCol="user_pass"
+               userRoleTable="user_roles" roleNameCol="role_name"/>
+        <Realm className="org.apache.catalina.realm.JAASRealm"
+               appName="students"
+               userClassNames="students.web.login.JAASUserPrincipal,students.web.login.JAASPasswordPrincipal"
+               roleClassNames="students.web.login.JAASRolePrincipal"/>
+    </Realm>
+
+
+</Context>
