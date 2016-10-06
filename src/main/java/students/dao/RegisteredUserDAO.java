@@ -259,14 +259,17 @@ public class RegisteredUserDAO {
         //stmt.setString(1, username);
         //ResultSet rs = stmt.executeQuery();
        Statement stmt = connection.createStatement();
-        log.info("SELECT user_name FROM users WHERE user_name = "+username);
-        ResultSet rs = stmt.executeQuery("SELECT user_name FROM users WHERE user_name = "+username);
-        while (rs.next()) {
-            returnedUsername=rs.getString("user_name");
-            log.info("Something was fount there");
+        log.info("SELECT user_name FROM users WHERE user_name = "+username+"");
+        boolean haveResults = stmt.execute("SELECT user_name FROM users WHERE user_name = "+username);
+        if (haveResults) {
+            ResultSet rs=stmt.getResultSet();
+            while (rs.next()) {
+                returnedUsername = rs.getString("user_name");
+                log.info("Something was fount there");
 
+            }
+            rs.close();
         }
-        rs.close();
         stmt.close();
         return (returnedUsername==null);
     }
